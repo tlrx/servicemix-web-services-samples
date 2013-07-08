@@ -2,6 +2,7 @@ package com.github.tlrx.servicemix.services;
 
 import com.github.tlrx.servicemix.exception.SearchServiceException;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -16,5 +17,5 @@ public interface SearchService {
      * @return a list of search hits.
      * @throws SearchServiceException
      */
-    List<SearchHit> search(String keywords) throws SearchServiceException;
+    Collection<SearchHit> search(String keywords) throws SearchServiceException;
 }

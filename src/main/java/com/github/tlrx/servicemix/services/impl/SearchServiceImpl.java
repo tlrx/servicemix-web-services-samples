@@ -5,6 +5,7 @@ import com.github.tlrx.servicemix.services.SearchHit;
 import com.github.tlrx.servicemix.services.SearchService;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
 public class SearchServiceImpl implements SearchService {
 
     @Override
-    public List<SearchHit> search(String keywords) throws SearchServiceException {
+    public Collection<SearchHit> search(String keywords) throws SearchServiceException {
         if ((keywords == null) || ("".equals(keywords))) {
             throw new SearchServiceException("Unable to search for empty keywords");
         }

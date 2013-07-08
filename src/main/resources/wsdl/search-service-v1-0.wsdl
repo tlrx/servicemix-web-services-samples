@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<wsdl:definitions xmlns:tlrx="http://tlrx.github.com/services/search"
+<wsdl:definitions xmlns:tlrx="http://tlrx.github.com/servicemix/ws/soap"
                   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
                   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                  targetNamespace="http://tlrx.github.com/services/search">
+                  targetNamespace="http://tlrx.github.com/servicemix/ws/soap">
     <wsdl:types>
-        <xsd:schema targetNamespace="http://tlrx.github.com/services/search">
+        <xsd:schema targetNamespace="http://tlrx.github.com/servicemix/ws/soap">
             <xsd:element name="searchRequest">
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
@@ -46,7 +46,7 @@
         <wsdl:part name="parameters" element="tlrx:searchResponseFault"/>
     </wsdl:message>
 
-    <wsdl:portType name="SearchWebService">
+    <wsdl:portType name="SearchWebServiceSoap">
         <wsdl:operation name="search">
             <wsdl:input message="tlrx:searchRequest"/>
             <wsdl:output message="tlrx:searchResponse"/>
@@ -54,7 +54,7 @@
         </wsdl:operation>
     </wsdl:portType>
 
-    <wsdl:binding name="SearchSoapBinding" type="tlrx:SearchWebService">
+    <wsdl:binding name="SearchSoapBinding" type="tlrx:SearchWebServiceSoap">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="search">
             <wsdl:input>

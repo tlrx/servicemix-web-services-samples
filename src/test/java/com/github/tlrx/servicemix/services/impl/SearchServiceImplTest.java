@@ -8,7 +8,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.util.List;
+import java.util.Collection;
 
 import static org.hamcrest.core.StringContains.containsString;
 
@@ -25,7 +25,7 @@ public class SearchServiceImplTest {
 
     @Test
     public void testSearch() {
-        List<SearchHit> hits = service.search("*");
+        Collection<SearchHit> hits = service.search("*");
         Assert.assertNotNull(hits);
         Assert.assertNotNull(hits);
     }
@@ -34,6 +34,6 @@ public class SearchServiceImplTest {
     public void testEmptySearch() {
         exception.expect(SearchServiceException.class);
         exception.expectMessage(containsString("empty keywords"));
-        List<SearchHit> hits = service.search("");
+        Collection<SearchHit> hits = service.search("");
     }
 }
