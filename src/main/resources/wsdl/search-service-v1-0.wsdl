@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:tlrx="http://tlrx.github.com/services/search"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://tlrx.github.com/services/search">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://tlrx.github.com/services/search">
+            <xsd:element name="searchRequest">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="30"/>
+                        <xsd:whiteSpace value="collapse"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="searchResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="hits" type="tlrx:searchHits"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="searchHits">
+                <xsd:sequence>
+                    <xsd:element name="id" minOccurs="0" maxOccurs="1" type="xsd:long" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="searchResponseFault">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="fault" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="searchRequest">
+        <wsdl:part name="parameters" element="tlrx:searchRequest"/>
+    </wsdl:message>
+    <wsdl:message name="searchResponse">
+        <wsdl:part name="parameters" element="tlrx:searchResponse"/>
+    </wsdl:message>
+    <wsdl:message name="searchResponseFault">
+        <wsdl:part name="parameters" element="tlrx:searchResponseFault"/>
+    </wsdl:message>
+
+    <wsdl:portType name="SearchWebService">
+        <wsdl:operation name="search">
+            <wsdl:input message="tlrx:searchRequest"/>
+            <wsdl:output message="tlrx:searchResponse"/>
+            <wsdl:fault name="fault" message="tlrx:searchResponseFault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="SearchSoapBinding" type="tlrx:SearchWebService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="search">
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+</wsdl:definitions>
