@@ -11,7 +11,7 @@
     <!-- SOAP/Xml Web Services -->
     <jaxws:endpoint id="searchSoapWebServiceEndpoint"
                     implementor="#searchSoapWebService"
-                    address="/services/ws/search"
+                    address="/services/ws/${search.api.version}/search"
                     wsdlLocation="classpath:/wsdl/search-service-v1-0.wsdl">
     </jaxws:endpoint>
 
@@ -21,7 +21,7 @@
 
     <!-- REST/Json Web Services -->
     <jaxrs:server id="searchRestWebServiceEndpoint"
-                  address="/services/rest">
+                  address="/services/rest/${search.api.version}">
         <jaxrs:serviceBeans>
             <bean class="com.github.tlrx.servicemix.ws.rest.impl.SearchWebServiceRestImpl">
                 <property name="service" ref="searchService"/>

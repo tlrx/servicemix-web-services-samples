@@ -65,5 +65,9 @@
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
+    
+    <wsdl:service name="SearchWebServiceSoap">
+        <wsdl:port name="SearchWebServiceSoap" binding="tlrx:SearchSoapBinding" />
+    </wsdl:service>
 
 </wsdl:definitions>
