@@ -18,11 +18,11 @@
             <xsd:element name="searchResponse">
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="hits" type="tlrx:searchHits"/>
+                        <xsd:element name="hits" type="tlrx:Hit" minOccurs="0" maxOccurs="unbounded"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:complexType name="searchHits">
+            <xsd:complexType name="Hit">
                 <xsd:sequence>
                     <xsd:element name="id" minOccurs="0" maxOccurs="1" type="xsd:long" />
                 </xsd:sequence>
