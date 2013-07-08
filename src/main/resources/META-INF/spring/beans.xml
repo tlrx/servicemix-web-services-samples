@@ -36,6 +36,8 @@
     </jaxrs:server>
 
     <!-- Business Service -->
-    <bean id="searchService" class="com.github.tlrx.servicemix.services.impl.SearchServiceImpl"/>
+    <bean id="searchService" class="com.github.tlrx.servicemix.services.impl.SearchServiceImpl">
+        <property name="identifier" value="${search.service.identifier}" />
+    </bean>
 
 </beans>

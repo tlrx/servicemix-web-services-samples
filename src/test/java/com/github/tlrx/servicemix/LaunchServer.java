@@ -21,7 +21,7 @@ public class LaunchServer {
         context.addServlet(servletHolder, "/*");
         context.addEventListener(new ContextLoaderListener());
 
-        context.setInitParameter("contextConfigLocation", "classpath:META-INF/spring/beans.xml");
+        context.setInitParameter("contextConfigLocation", "classpath:integration-test.xml");
         server.setHandler(context);
         server.start();
         server.join();

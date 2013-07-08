@@ -13,10 +13,12 @@ import java.util.List;
  */
 public class SearchServiceImpl implements SearchService {
 
+    private String identifier;
+
     @Override
     public Collection<SearchHit> search(String keywords) throws SearchServiceException {
         if ((keywords == null) || ("".equals(keywords))) {
-            throw new SearchServiceException("Unable to search for empty keywords");
+            throw new SearchServiceException("Unable to search for empty keywords on " + identifier);
         }
 
         List<SearchHit> hits = new ArrayList<>();
@@ -27,5 +29,9 @@ public class SearchServiceImpl implements SearchService {
             hits.add(hit);
         }
         return hits;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 }

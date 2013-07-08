@@ -7,7 +7,7 @@
 
     <groupId>com.github.tlrx</groupId>
     <artifactId>servicemix-web-services-samples</artifactId>
-    <packaging>jar</packaging>
+    <packaging>bundle</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>Web Services samples that run on Apache ServiceMix</name>
 
@@ -139,7 +139,7 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
-                    <include>**/beans.xml</include>
+                    <include>**/beans*.xml</include>
                 </includes>
             </resource>
         </resources>
@@ -187,6 +187,69 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- Used for ServiceMix packaging -->
+            <!--
+                            Activer le driver Oracle sur Apache ServiceMix:
+                                - features:install spring-jdbc
+                                - osgi:install mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-dbcp
+                                - dev:dynamic-import 216
+                                - cp ~/.m2/repository/com/oracle/ojdbc14/10.2.0.5.0/ojdbc14-10.2.0.5.0.jar ~/Logiciels/apache-servicemix-4.5.1/deploy
+                        -->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.3.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Description>${project.description}</Bundle-Description>
+                        <Import-Package>
+                            javax.jws,
+                            javax.wsdl,
+                            javax.jws.soap,
+                            javax.xml.bind,
+                            javax.xml.bind.annotation,
+                            javax.xml.namespace,
+                            javax.xml.ws,
+                            javax.xml.datatype,
+                            javax.ws.rs, javax.ws.rs.core, javax.ws.rs.ext, org.apache.cxf.jaxrs.provider.json,
+                            javax.xml.parsers, org.apache.cxf.headers, org.apache.cxf.helpers, org.w3c.dom, org.xml.sax,
+                            org.apache.camel.spi,
+                            org.apache.camel.util,
+                            org.apache.camel.model,
+                            META-INF.cxf,
+                            META-INF.cxf.osgi,
+                            org.apache.camel,
+                            org.apache.camel.builder,
+                            org.apache.cxf.bus,
+                            org.apache.cxf.jaxrs.security,
+                            org.apache.cxf.bus.spring,
+                            org.apache.cxf.bus.resource,
+                            org.apache.cxf.configuration.spring,
+                            org.apache.cxf.resource,
+                            org.apache.cxf.message,
+                            org.apache.cxf.jaxws,
+                            org.apache.cxf.transport.http,
+                            org.apache.cxf.interceptor,
+                            org.apache.cxf.binding.soap,
+                            org.apache.cxf.ws.security.wss4j,
+                            org.apache.cxf.interceptor.security,
+                            org.apache.cxf.annotations,
+                            org.apache.ws.security,
+                            org.apache.ws.security.processor,
+                            org.springframework.beans.factory.config,
+                            org.springframework.beans.factory.annotation,
+                            javax.security.auth.callback,
+                            org.eclipse.jetty.plus.jaas,
+                            org.apache.karaf.jaas.modules,
+                            org.apache.karaf.jaas.boot.principal
+                        </Import-Package>
+                        <_include>src/main/filter/filter.properties</_include>
+                    </instructions>
+                </configuration>
             </plugin>
 
         </plugins>
