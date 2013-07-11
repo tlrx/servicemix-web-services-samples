@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.tlrx</groupId>
+        <groupId>com.github.tlrx</groupId>
     <artifactId>servicemix-web-services-samples</artifactId>
     <packaging>bundle</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -17,11 +17,12 @@
         <camel.version>2.10.4</camel.version>
         <cxf.version>2.6.6</cxf.version>
         <jetty.version>9.0.3.v20130506</jetty.version>
-        <jaxb.version>2.2</jaxb.version>
         <spring.version>3.0.7.RELEASE</spring.version>
         <cglib.version>2.2.2</cglib.version>
         <mockito.version>1.9.5</mockito.version>
         <jettison.version>1.3.3</jettison.version>
+        <slf4j.version>1.7.5</slf4j.version>
+        <logback.version>1.0.13</logback.version>
     </properties>
 
     <dependencies>
@@ -30,12 +31,6 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-cxf</artifactId>
             <version>${camel.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>${jaxb.version}</version>
         </dependency>
 
         <dependency>
@@ -66,6 +61,12 @@
             <groupId>org.codehaus.jettison</groupId>
             <artifactId>jettison</artifactId>
             <version>${jettison.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
 
 
@@ -123,6 +124,13 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -215,8 +223,15 @@
                             javax.xml.namespace,
                             javax.xml.ws,
                             javax.xml.datatype,
-                            javax.ws.rs, javax.ws.rs.core, javax.ws.rs.ext, org.apache.cxf.jaxrs.provider.json,
-                            javax.xml.parsers, org.apache.cxf.headers, org.apache.cxf.helpers, org.w3c.dom, org.xml.sax,
+                            javax.ws.rs,
+                            javax.ws.rs.core,
+                            javax.ws.rs.ext,
+                            org.apache.cxf.jaxrs.provider.json,
+                            javax.xml.parsers,
+                            org.apache.cxf.headers,
+                            org.apache.cxf.helpers,
+                            org.w3c.dom,
+                            org.xml.sax,
                             org.apache.camel.spi,
                             org.apache.camel.util,
                             org.apache.camel.model,
@@ -245,7 +260,8 @@
                             javax.security.auth.callback,
                             org.eclipse.jetty.plus.jaas,
                             org.apache.karaf.jaas.modules,
-                            org.apache.karaf.jaas.boot.principal
+                            org.apache.karaf.jaas.boot.principal,
+                            org.slf4j;version="[1.5,1.7)";resolution:=optional,
                         </Import-Package>
                         <_include>src/main/filter/filter.properties</_include>
                     </instructions>

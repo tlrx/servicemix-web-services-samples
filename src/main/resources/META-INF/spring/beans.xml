@@ -30,6 +30,7 @@
         <jaxrs:providers>
             <bean class="org.apache.cxf.jaxrs.provider.json.JSONProvider">
                 <property name="supportUnwrapped" value="true"/>
+                <property name="writeXsiType" value="false"/>
             </bean>
             <bean class="com.github.tlrx.servicemix.ws.rest.mapper.SearchServiceExceptionMapper" />
         </jaxrs:providers>
