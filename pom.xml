@@ -148,6 +148,7 @@
                 <filtering>true</filtering>
                 <includes>
                     <include>**/beans*.xml</include>
+                    <include>wsdl/**</include>
                 </includes>
             </resource>
         </resources>

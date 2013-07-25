@@ -67,10 +67,18 @@ public class SearchWebServiceSoapImplTest {
 
     @Test
     public void testSearchEmptyKeywords() throws SearchResponseFault_Exception {
-        when(mockSearchService.search(anyString())).thenThrow(new SearchServiceException("empty keywords"));
-
         exception.expect(SOAPFaultException.class);
-        exception.expectMessage(containsString("empty keywords"));
+        exception.expectMessage(containsString("cvc-minLength-valid"));
+        exception.expectMessage(containsString("#AnonType_searchRequest"));
+
+        client.search("");
+    }
+
+    @Test
+    public void testSearchMinSizeKeywords() throws SearchResponseFault_Exception {
+        exception.expect(SOAPFaultException.class);
+        exception.expectMessage(containsString("cvc-minLength-valid"));
+        exception.expectMessage(containsString("#AnonType_searchRequest"));
 
         client.search("");
     }

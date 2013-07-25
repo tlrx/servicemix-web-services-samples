@@ -24,7 +24,7 @@
             </xsd:element>
             <xsd:complexType name="Hit">
                 <xsd:sequence>
-                    <xsd:element name="id" minOccurs="0" maxOccurs="1" type="xsd:long" />
+                    <xsd:element name="id" minOccurs="0" maxOccurs="1" type="xsd:long"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:element name="searchResponseFault">
@@ -46,7 +46,7 @@
         <wsdl:part name="parameters" element="tlrx:searchResponseFault"/>
     </wsdl:message>
 
-    <wsdl:portType name="SearchWebServiceSoap">
+    <wsdl:portType name="SearchWebService">
         <wsdl:operation name="search">
             <wsdl:input message="tlrx:searchRequest"/>
             <wsdl:output message="tlrx:searchResponse"/>
@@ -54,7 +54,7 @@
         </wsdl:operation>
     </wsdl:portType>
 
-    <wsdl:binding name="SearchSoapBinding" type="tlrx:SearchWebServiceSoap">
+    <wsdl:binding name="SearchSoapBinding" type="tlrx:SearchWebService">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="search">
             <wsdl:input>
@@ -65,9 +65,11 @@
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
-    
-    <wsdl:service name="SearchWebServiceSoap">
-        <wsdl:port name="SearchWebServiceSoap" binding="tlrx:SearchSoapBinding" />
+
+    <wsdl:service name="SearchWebService">
+        <wsdl:port name="SearchWebService" binding="tlrx:SearchSoapBinding">
+            <soap:address location=""></soap:address>
+        </wsdl:port>
     </wsdl:service>
 
 </wsdl:definitions>

@@ -22,9 +22,17 @@
     <!-- SOAP/Xml Web Services -->
     <jaxws:endpoint id="searchSoapWebServiceEndpoint"
                     implementor="#searchSoapWebService"
+                    serviceName="tlrx:SearchWebService"
+                    xmlns:tlrx="http://tlrx.github.com/servicemix/ws/soap"
+                    endpointName="tlrx:SearchWebService"
                     address="local://services/ws/search"
                     wsdlLocation="classpath:/wsdl/search-service-v1-0.wsdl">
+        <jaxws:properties>
+            <entry key="schema-validation-enabled" value="true"/>
+        </jaxws:properties>
     </jaxws:endpoint>
+
+
 
     <bean id="searchSoapWebService" class="com.github.tlrx.servicemix.ws.soap.impl.SearchWebServiceSoapImpl" />
 
